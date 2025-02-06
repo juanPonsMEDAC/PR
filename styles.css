@@ -1,0 +1,137 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#invoicePreview {
+    margin-top: 20px;
+    display: none;
+    text-align: left;
+    padding: 10px;
+}
+
+.invoice-logo {
+    width: 100px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    resize: vertical;
+}
+
+/* BOTONES */
+button {
+    background-color: #007bff; /* Blau modern */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px; /* Fent el botó més redó */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #0056b3; /* Blau més fosc en passar el ratolí */
+    transform: scale(1.05); /* Liger efecte de zoom */
+}
+
+button:active {
+    background-color: #003d80; /* Blau més fosc al fer clic */
+    transform: scale(0.95);
+}
+
+.btn-primary {
+    background-color: #28a745; /* Verd */
+}
+
+.btn-primary:hover {
+    background-color: #218838;
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Roig */
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn-remove {
+    background-color: transparent;
+    color: #dc3545; /* Color roig per a indicar eliminació */
+    border: none;
+    font-size: 18px; /* Mida del símbol */
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 10px;
+    border-radius: 50%; /* Fa que siga un botó rodó */
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn-remove:hover {
+    background-color: rgba(220, 53, 69, 0.1); /* Lleuger fons roig en hover */
+    transform: scale(1.1);
+}
+
+.btn-remove:active {
+    transform: scale(0.9);
+}

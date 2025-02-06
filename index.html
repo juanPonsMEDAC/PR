@@ -1,0 +1,80 @@
+<!-- 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+
+    <button onclick="resetInvoiceCounter('normal')">Reiniciar Contador de Facturas Normales</button>
+    <button onclick="resetInvoiceCounter('efectivo')">Reiniciar Contador de Facturas Efectivo*</button> 
+-->
+
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Facturas - PEPEACADEMY</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Generador de Facturas</h1>
+        <form id="invoiceForm">
+            <label for="clientName">Nombre del Cliente:</label>
+            <input type="text" id="clientName" required>
+
+            <label for="paymentMethod">Método de Pago:</label>
+            <select id="paymentMethod" onchange="updateInvoiceNumber()">
+                <option value="Efectivo">Efectivo</option>
+                <option value="Transferencia">Transferencia</option>
+                <option value="Efectivo*">Efectivo*</option>
+            </select>
+
+            <h3>Productos</h3>
+            <div id="productList"></div>
+            <button type="button" onclick="addProduct()">➕ Agregar Producto</button>
+
+            <label for="totalPrice">Total a pagar (€):</label>
+            <input type="number" id="totalPrice" readonly>
+
+            <label for="observations">Observaciones:</label>
+            <textarea id="observations" rows="3" placeholder="Añadir cualquier nota adicional..."></textarea>
+
+            <button type="button" onclick="generateInvoice()">Generar Factura</button>
+        </form>
+
+        <div id="invoicePreview">
+            <h2>Factura</h2>
+            <img src="logo.png" alt="Logo de PEPEACADEMY" class="invoice-logo">
+            <p><strong>Empresa:</strong> PEPEACADEMY</p>
+            <p><strong>CIF:</strong> 123456789A</p>
+            <p><strong>Dirección:</strong> Calle Pelayo</p>
+            <p><strong>Teléfono:</strong> 639123123</p>
+            <hr>
+            <p id="invoiceNumber"></p>
+            <p id="invoiceDate"></p>
+            <p id="invoiceClient"></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cantidad</th>
+                        <th>Producto</th>
+                        <th>Precio Unitario</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="invoiceTableBody"></tbody>
+            </table>
+            <p id="invoiceTotal"></p>
+            <p id="invoicePaymentMethod"></p>
+            <p id="invoiceObservations"></p>
+            <button onclick="downloadPDF()">Descargar PDF</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <button onclick="resetInvoiceCounter('normal')">Reiniciar numeración</button>
+    <button onclick="resetInvoiceCounter('efectivo')">Reiniciar contador</button> 
+
+</body>
+</html>
