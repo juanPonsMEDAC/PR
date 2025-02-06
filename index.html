@@ -1,11 +1,8 @@
 <!-- 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
-
-    <button onclick="resetInvoiceCounter('normal')">Reiniciar Contador de Facturas Normales</button>
-    <button onclick="resetInvoiceCounter('efectivo')">Reiniciar Contador de Facturas Efectivo*</button> 
+    Juan Pons González
+    Versión 1.0
+    06702/025
 -->
-
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -30,6 +27,10 @@
                 <option value="Transferencia">Transferencia</option>
                 <option value="Efectivo*">Efectivo*</option>
             </select>
+
+            <label for="manualInvoiceNumber">Número de Factura (Opcional):</label>
+            <input type="text" id="manualInvoiceNumber" placeholder="Si se deja vacío, se generará automáticamente">
+
 
             <h3>Productos</h3>
             <div id="productList"></div>
