@@ -55,6 +55,7 @@ function generateInvoice() {
     const observations = document.getElementById('observations').value;
     const totalPrice = document.getElementById('totalPrice').value;
     const date = new Date().toLocaleDateString();
+    const manualInvoiceNumber = document.getElementById('manualInvoiceNumber').value.trim();
 
     if (!clientName || !totalPrice || totalPrice <= 0) {
         alert("Por favor, completa todos los campos correctamente.");
@@ -62,21 +63,36 @@ function generateInvoice() {
     }
 
     let invoiceNumber;
-    if (paymentMethod === "Efectivo*") {
-        invoiceNumber = `FACT-1-${String(invoiceCounterEfectivo).padStart(5, '0')}`;
-        invoiceCounterEfectivo++;
-        localStorage.setItem('invoiceCounterEfectivo', invoiceCounterEfectivo);
+    if (manualInvoiceNumber) {
+        // Si l'usuari ha introduït un número de factura manual, l'utilitzemgenerem un automàticament segons el mètode de pagament
+        if (paymentMethod === "Efectivo*") {
+            invoiceNumber = `FACT-1-${manualInvoiceNumber.padStart(5, '0')}`;
+            invoiceCounterEfectivo++;
+            localStorage.setItem('invoiceCounterEfectivo', invoiceCounterEfectivo);
+        } else {
+            invoiceNumber = `FAC-${manualInvoiceNumber.padStart(5, '0')}`;
+            invoiceCounterNormal++;
+            localStorage.setItem('invoiceCounterNormal', invoiceCounterNormal);
+        }
     } else {
-        invoiceNumber = `FAC-${String(invoiceCounterNormal).padStart(5, '0')}`;
-        invoiceCounterNormal++;
-        localStorage.setItem('invoiceCounterNormal', invoiceCounterNormal);
+        // Si no, generem un automàticament segons el mètode de pagament
+        if (paymentMethod === "Efectivo*") {
+            invoiceNumber = `FACT-1-${String(invoiceCounterEfectivo).padStart(5, '0')}`;
+            invoiceCounterEfectivo++;
+            localStorage.setItem('invoiceCounterEfectivo', invoiceCounterEfectivo);
+        } else {
+            invoiceNumber = `FAC-${String(invoiceCounterNormal).padStart(5, '0')}`;
+            invoiceCounterNormal++;
+            localStorage.setItem('invoiceCounterNormal', invoiceCounterNormal);
+        }
     }
+
     document.getElementById('invoiceNumber').innerText = `Número de Factura: ${invoiceNumber}`;
     document.getElementById('invoiceDate').innerText = `Fecha: ${date}`;
     document.getElementById('invoiceClient').innerText = `Cliente: ${clientName}`;
     document.getElementById('invoiceTotal').innerText = `Total a pagar: ${totalPrice}€`;
     document.getElementById('invoicePaymentMethod').innerText = `Método de Pago: ${paymentMethod}`;
-    document.getElementById('invoiceObservations').innerText = `${observations}`;
+    document.getElementById('invoiceObservations').innerText = `Observaciones: ${observations}`;
 
     const tableBody = document.getElementById('invoiceTableBody');
     tableBody.innerHTML = '';
@@ -89,6 +105,7 @@ function generateInvoice() {
 
     document.getElementById('invoicePreview').style.display = "block";
 }
+
 
 // **Actualitza el número de factura segons el mètode de pagament seleccionat**
 function updateInvoiceNumber() {
